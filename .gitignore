@@ -1,0 +1,10 @@
+dist
+.tmp
+node_modules
+
+2015-09-23_mcas-districts_cache
+2015-09-23_mcas-districts_files
+2015-09-23_mcas-districts.html
+.Rhistory
+
+*.swp
