@@ -5,6 +5,13 @@ var webpackStream = require('webpack-stream');
 var webpack       = require('webpack');
 
 var config = {
+	plugins: [
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery',
+			'window.jQuery': 'jquery'
+		})
+	],
 	module: {
 		loaders: [
 			{ test: /\.csv?$/, loader: 'dsv-loader' },

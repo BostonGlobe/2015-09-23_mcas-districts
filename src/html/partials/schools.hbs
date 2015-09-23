@@ -1,0 +1,39 @@
+<table>
+
+	<thead>
+		<tr>
+			<th>School</th>
+			<th>District</th>
+			<th>Lowest grade</th>
+			<th>Highest grade</th>
+			<th>School type</th>
+		</tr>
+	</thead>
+
+	<tfoot>
+		<tr>
+			<th>School</th>
+			<th>District</th>
+			<th>Lowest grade</th>
+			<th>Highest grade</th>
+			<th>School type</th>
+		</tr>
+	</tfoot>
+
+	<tbody>
+
+		{{#each schools}}
+
+			<tr>
+				<th>{{this.school}}</th>
+				<th>{{this.district}}</th>
+				<th>{{this.lowest_grade}}</th>
+				<th>{{this.highest_grade}}</th>
+				<th>{{this.school_type}}</th>
+			</tr>
+
+		{{/each}}
+
+	</tbody>
+
+</table>
