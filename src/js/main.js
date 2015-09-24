@@ -20,6 +20,13 @@ $.extend($.fn.dataTableExt.oSort, {
 	'natural-desc': (a, b) => naturalSort(a, b) * -1
 });
 
+// get the query string district param
+const parentUrl = queryString.parse(location.search).parentUrl;
+const parentQueryString = queryString.extract(parentUrl);
+let districtParam = queryString.parse(parentQueryString).district;
+
+$('.district-label').html(districtParam);
+
 // get districts data
 $.getJSON('http://www.bostonglobe.com/r/Boston/2011-2020/WebGraphics/Metro/BostonGlobe.com/2015/09/mcas-district/districts.json', createEverything);
 
@@ -33,15 +40,11 @@ function createEverything(districts) {
 		.sortBy(d=>d)
 		.value();
 
-	// get the query string district param
-	const parentUrl = queryString.parse(location.search).parentUrl;
-	const parentQueryString = queryString.extract(parentUrl);
-	let districtParam = queryString.parse(parentQueryString).district;
-
 	// if we don't have a district param,
 	// choose the first one
 	if (!districtParam) {
 		districtParam = districtsList[0];
+		$('.district-label').html(districtParam);
 	}
 
 	// construct districts dropdown
