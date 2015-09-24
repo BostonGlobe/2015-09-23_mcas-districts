@@ -58,8 +58,6 @@ tidied <- data %>%
 	separate(category, c('subject', 'bracket'), 1) %>%
 	spread(bracket, value)
 
-head(tidied)
-
 write.csv(tidied, 'output/districts.csv', row.names=F)
 
 ```
