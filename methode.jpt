@@ -3,7 +3,7 @@
 <p:out var="storyID" value="globe-iframe-graphic-${fn:replace(basepath, '/', '-')}"/>
 <style>
 
-header {
+.header {
 	display: none;
 }
 
