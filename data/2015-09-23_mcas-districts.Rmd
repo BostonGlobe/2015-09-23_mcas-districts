@@ -7,12 +7,61 @@ output:
 ---
 
 ```{r, echo=FALSE, results='hide', warning=FALSE, message=FALSE}
-# load libraries here
+
+# load libraries
+library(readxl)
+library(dplyr)
+library(tidyr)
+
+# set the current working directory
+setwd("~/Documents/dev/mcas/mcas-districts/data")
+
 ```
 
 ```{r, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=TRUE}
-# load data here
-rawdata <- read.csv('../data.csv', strip.white=TRUE, stringsAsFactors=FALSE, row.names=NULL)
+
+# read schools spreadsheet
+districts <- read_excel('input/districts_2014.xlsx')
+
+data <- districts %>%
+	rename(
+		district=District_Name,
+		grade=grade_14
+	) %>%
+	select(
+		
+		district,
+		grade,
+		
+		eadv_per_14,
+		epro_per_14,
+		eni_per_14,
+		ewf_per_14,
+		etotal_perf_14,
+		
+		madv_per_14,
+		mpro_per_14,
+		mni_per_14,
+		mwf_per_14,
+		mtotal_perf_14,
+		
+		sadv_per_14,
+		spro_per_14,
+		sni_per_14,
+		swf_per_14,
+		stotal_perf_14
+		
+	)
+
+tidied <- data %>%
+	gather(category, value, -grade, -district, na.rm=T) %>%
+	separate(category, c('subject', 'bracket'), 1) %>%
+	spread(bracket, value)
+
+head(tidied)
+
+write.csv(tidied, 'output/districts.csv', row.names=F)
+
 ```
 
 ```{r, results='asis', fig.width=10, fig.height=4, warning=FALSE, message=FALSE}
