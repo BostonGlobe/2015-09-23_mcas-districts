@@ -8,3 +8,7 @@ R_deploy:
 	cp data/2015-09-23_mcas-districts.html /Volumes/www_html/multimedia/graphics/projectFiles/Rmd/
 	rsync -rv data/2015-09-23_mcas-districts_files /Volumes/www_html/multimedia/graphics/projectFiles/Rmd
 	open http://private.boston.com/multimedia/graphics/projectFiles/Rmd/2015-09-23_mcas-districts.html
+
+all:
+
+	csvjson -i 4 ./data/output/districts.csv > ./src/data/districts.json
