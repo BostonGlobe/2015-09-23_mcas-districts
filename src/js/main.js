@@ -28,9 +28,15 @@ let districtParam = queryString.parse(parentQueryString).district;
 $('.district-label').html(districtParam);
 
 // get districts data
-$.getJSON('https://www.bostonglobe.com/r/Boston/2011-2020/WebGraphics/Metro/BostonGlobe.com/2015/09/mcas-district/districts.json', createEverything);
+$.ajax({
+	url: 'https://www.bostonglobe.com/r/Boston/2011-2020/WebGraphics/Metro/BostonGlobe.com/2015/09/mcas-district/districts.jsonp',
+	dataType: 'jsonp',
+	jsonpCallback: '_mcas_2015_districts'
+});
 
-function createEverything(districts) {
+// $.getJSON('https://www.bostonglobe.com/r/Boston/2011-2020/WebGraphics/Metro/BostonGlobe.com/2015/09/mcas-district/districts.json', createEverything);
+
+window._mcas_2015_districts = function(districts) {
 
 	// create list of districts, ordered alpha
 	// we will use this later
