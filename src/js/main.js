@@ -34,8 +34,6 @@ $.ajax({
 	jsonpCallback: '_mcas_2015_districts'
 });
 
-// $.getJSON('https://www.bostonglobe.com/r/Boston/2011-2020/WebGraphics/Metro/BostonGlobe.com/2015/09/mcas-district/districts.json', createEverything);
-
 window._mcas_2015_districts = function(districts) {
 
 	// create list of districts, ordered alpha
