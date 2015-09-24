@@ -1,3 +1,4 @@
+<p:style src='https://apps.bostonglobe.com/common/css/igraphic/igraphic-0.1.0.css'/>
 <p:out var="basepath" value="${currentObject.basePath}"/>
 <p:out var="storyID" value="globe-iframe-graphic-${fn:replace(basepath, '/', '-')}"/>
 
@@ -11,7 +12,7 @@
 			//========================================
 			// Insert path to jpt between quotes below
 			//========================================
-			var path = ''; 
+			var path = '/Boston/Content/Metro/WebGraphics/2015/09/mcas-district/mcas-district.jpt'; 
 
 
 			var test1 = '.jpt';
