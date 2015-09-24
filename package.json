@@ -17,6 +17,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-smoosher": "0.0.8",
     "gulp-stylus": "^2.0.6",
+    "javascript-natural-sort": "gabrielflorit/javascript-natural-sort",
     "jquery": "^2.1.4",
     "json-loader": "^0.5.3",
     "lodash": "^3.10.1",

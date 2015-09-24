@@ -8,11 +8,18 @@ function onPymParentResize(width) {};
 iframeResizer.resizer(onPymParentResize);
 
 // initialize third-party libraries
+const naturalSort = require('javascript-natural-sort');
 const queryString = require('query-string');
 const _ = require('lodash');
 const $ = require('jquery');
 const dataTable = require('datatables');
 $.fn.DataTable = dataTable;
+
+// enable natural sorting in datatable
+$.extend($.fn.dataTableExt.oSort, {
+	'natural-asc': (a, b) => naturalSort(a, b),
+	'natural-desc': (a, b) => naturalSort(a, b) * -1
+});
 
 // get districts data
 const districts = require('./../data/districts.json');
@@ -72,13 +79,14 @@ const tbody = _(district)
 	})
 	.value().join('');
 
+// populate table tbody with district rows
 $('table tbody').html(tbody);
 
 // convert to DataTable,
 // and group by first column (grade)
 let table = $('table').DataTable({
 	columnDefs: [
-		{ visible: false, targets: 0  }
+		{ visible: false, type: 'natural', targets: 0  }
 	],
 	order: [[0, 'asc']],
 	displayLength: 25,
@@ -91,7 +99,7 @@ let table = $('table').DataTable({
 		api.column(0, {page:'current'}).data().each((group, i) => {
 			if (last !== group) {
 				$(rows).eq(i).before(
-					`<tr class="group"><td colspan="6">${group}</td></tr>`
+					`<tr class="group"><td colspan="6">Grade ${group}</td></tr>`
 				);
 
 				last = group;
