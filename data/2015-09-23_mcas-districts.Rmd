@@ -21,35 +21,35 @@ setwd("~/Documents/dev/mcas/mcas-districts/data")
 ```{r, echo=FALSE, results='hide', warning=FALSE, message=FALSE, cache=TRUE}
 
 # read schools spreadsheet
-districts <- read_excel('input/districts_2014.xlsx')
+districts <- read_excel('input/districts.xlsx')
 
 data <- districts %>%
 	rename(
 		district=District_Name,
-		grade=grade_14
+		grade=grade_15
 	) %>%
 	select(
 		
 		district,
 		grade,
 		
-		eadv_per_14,
-		epro_per_14,
-		eni_per_14,
-		ewf_per_14,
-		etotal_perf_14,
+		eadv_per_15,
+		epro_per_15,
+		eni_per_15,
+		ewf_per_15,
+		etotal_perf_15,
 		
-		madv_per_14,
-		mpro_per_14,
-		mni_per_14,
-		mwf_per_14,
-		mtotal_perf_14,
+		madv_per_15,
+		mpro_per_15,
+		mni_per_15,
+		mwf_per_15,
+		mtotal_perf_15,
 		
-		sadv_per_14,
-		spro_per_14,
-		sni_per_14,
-		swf_per_14,
-		stotal_perf_14
+		sadv_per_15,
+		spro_per_15,
+		sni_per_15,
+		swf_per_15,
+		stotal_perf_15
 		
 	)
 
@@ -64,11 +64,11 @@ tidied <- data %>%
 	select(-subject) %>%
 	rename(
 		subject = name,
-		advanced = adv_per_14,
-		proficient = pro_per_14,
-		needs_improvement = ni_per_14,
-		warning = wf_per_14,
-		tested = total_perf_14
+		advanced = adv_per_15,
+		proficient = pro_per_15,
+		needs_improvement = ni_per_15,
+		warning = wf_per_15,
+		tested = total_perf_15
 	)
 
 head(tidied)
