@@ -1,7 +1,8 @@
 const _ = require('lodash');
 const fs = require('fs');
+const d3 = require('d3');
 
-const input = JSON.parse(fs.readFileSync('./output/districts.json', 'utf8'));
+const input = d3.csv.parse(fs.readFileSync('./output/districts.csv', 'utf8'));
 
 const output = _(input)
 	.groupBy('district')
@@ -23,6 +24,7 @@ const output = _(input)
 				};
 
 			})
+			.sortBy('grade')
 			.value();
 
 		return {

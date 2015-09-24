@@ -53,15 +53,26 @@ data <- districts %>%
 		
 	)
 
+subjects <- read.csv('input/subjects.csv')
+
 tidied <- data %>%
 	gather(category, value, -grade, -district, na.rm=T) %>%
 	separate(category, c('subject', 'bracket'), 1) %>%
-	spread(bracket, value)
+	spread(bracket, value) %>%
+	mutate(grade=gsub('^0', '', grade)) %>%
+	inner_join(subjects, by=c('subject')) %>%
+	select(-subject) %>%
+	rename(
+		subject = name,
+		advanced = adv_per_14,
+		proficient = pro_per_14,
+		needs_improvement = ni_per_14,
+		warning = wf_per_14,
+		tested = total_perf_14
+	)
+
+head(tidied)
 
 write.csv(tidied, 'output/districts.csv', row.names=F)
 
-```
-
-```{r, results='asis', fig.width=10, fig.height=4, warning=FALSE, message=FALSE}
-# make graphic here
 ```

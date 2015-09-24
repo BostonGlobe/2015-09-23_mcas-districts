@@ -52,3 +52,8 @@ const districtsOptions = _(districtsList)
 // populate districts dropdown
 $('.districts-dropdown-wrapper select').html(districtsOptions);
 
+// get the chosen district object
+const district = _.findWhere(districts, {district: districtParam});
+
+// construct district body
+console.log(JSON.stringify(district, null, 4));
