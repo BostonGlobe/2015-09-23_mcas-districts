@@ -69,11 +69,11 @@ const tbody = _(district)
 				<tr>
 					<th>${d.grade}</th>
 					<th>${d.subject}</th>
-					<th>${d.advanced}</th>
-					<th>${d.proficient}</th>
-					<th>${d.needs_improvement}</th>
-					<th>${d.warning}</th>
-					<th>${d.tested}</th>
+					<th>${d.advanced}%</th>
+					<th>${d.proficient}%</th>
+					<th>${d.needs_improvement}%</th>
+					<th>${d.warning}%</th>
+					<th>${(+d.tested).toLocaleString()}</th>
 				</tr>
 			`;
 	})
