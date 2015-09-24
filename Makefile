@@ -11,4 +11,5 @@ R_deploy:
 
 all:
 
-	cd data; node index.js;
+	cd data; csvjson -i 4 output/districts.csv > ../src/data/districts.json
+	# cd data; node index.js;
