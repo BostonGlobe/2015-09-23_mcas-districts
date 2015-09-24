@@ -4,7 +4,6 @@ const iframeResizer = require('pym-iframe-resizer');
 
 // This fires when the parent of iframe resizes
 function onPymParentResize(width) {};
-
 iframeResizer.resizer(onPymParentResize);
 
 // initialize third-party libraries
@@ -55,8 +54,22 @@ const districtsOptions = _(districtsList)
 	})
 	.value().join('');
 
-// populate districts dropdown
-$('.districts-dropdown-wrapper select').html(districtsOptions);
+// populate districts dropdown and
+// handle districts dropdown change
+$('.districts-dropdown-wrapper select')
+	.html(districtsOptions)
+	.change(function(e) {
+
+		// get the selected item
+		const selection = $(this).val();
+
+		// construct the new parent url, including the new district
+		const newUrl = parentUrl.split('?')[0] + '?district=' + selection;
+
+		// tell parent to go to new url
+		iframeResizer.getPymChild().navigateParentTo(newUrl);
+
+	});
 
 // get the chosen district object
 const district = _.filter(districts, {district: districtParam});
@@ -86,7 +99,8 @@ $('table tbody').html(tbody);
 // and group by first column (grade)
 let table = $('table').DataTable({
 	columnDefs: [
-		{ visible: false, type: 'natural', targets: 0  }
+		{ visible: false, type: 'natural', targets: 0  },
+		{ className: 'dt-right', targets: [2, 3, 4, 5, 6] }
 	],
 	order: [[0, 'asc']],
 	displayLength: 25,
@@ -119,4 +133,3 @@ $('tbody').on('click', 'tr.group', function() {
 		table.api().order([0, 'asc']).draw();
 	}
 });
-
